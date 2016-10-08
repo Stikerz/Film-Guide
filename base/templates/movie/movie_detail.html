@@ -1,0 +1,44 @@
+{% extends "_layouts/base.html" %}
+
+{% block css %}
+{{block.super}}
+{% endblock css %}
+
+{% block page_title %}Your Site - Home{% endblock %}
+{% block page_class %}home-page{% endblock %}
+{% block content %}
+<!-- This code is taken from http://getbootstrap.com/examples/jumbotron/ -->
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-8 box box-dt">
+          <br />
+          <p>
+            <a href="{% url 'movie_list' %}">Back to Listing</a>
+          </p>
+          <h1>{{ movie.title }} ({{ movie.year }})</h1>
+          <p>
+            <img src="{{ movie.posters.original }}" />
+          </p>
+          <p>
+            {{ movie.synopsis }}
+          </p>
+          <p>
+            <strong>Critics Score:</strong> <span>{{ movie.ratings.critics_score }}</span>
+          </p>
+          <p>
+            <strong>Audience Score:</strong> <span>{{ movie.ratings.audience_score }}</span>
+          </p>
+          <p>
+            <ul>
+              {% for cast in movie.abridged_cast %}
+                <li>{{ cast.name }}</li>
+              {% endfor %}
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

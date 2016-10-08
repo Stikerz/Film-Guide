@@ -1,0 +1,32 @@
+{% extends "_layouts/base.html" %}
+
+{% block css %}
+{{block.super}}
+
+{% endblock css %}
+
+{% block page_title %}Your Site - Home{% endblock %}
+{% block page_class %}home-page{% endblock %}
+{% block content %}
+<!-- This code is taken from http://getbootstrap.com/examples/jumbotron/ -->
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        {% for movie in movies %}
+          <div class="col-md-3">
+            <div class="back-white box">
+              <h4>{{ movie.title }}</h4>
+              <p><img src="{{ movie.original }}"></p>
+              <p>
+                <a class="btn btn-default container-borderradius" href="{% url 'movie_detail' movie.id %}?q={{ movie.title }}">
+                  View details »
+                </a>
+              </p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+{% endblock %}
